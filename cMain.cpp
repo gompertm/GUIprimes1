@@ -140,7 +140,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 			{
 				reject = std::stoi(string1);
 			}
-			if (reject <0 || reject >10 )
+			if (reject <0 || reject >9 )
 			{
 				rejectoccured = true;
 			}
@@ -187,31 +187,32 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 		}
 		else
 		{
+			bool alreadyhappened = false;
 			if (maxoccured && !minoccured && !countoccured && !rejectoccured)
 			{
 				wxMessageDialog* dial = new wxMessageDialog(NULL, wxT("Improper number entered into the Maximum field"), wxT("Maximum Error"), wxOK | wxICON_ERROR);
 				dial->ShowModal();
-				occured = true;
+				alreadyhappened = true;
 			}
 			if (minoccured && !maxoccured && !countoccured && !rejectoccured)
 			{
 				wxMessageDialog* dial = new wxMessageDialog(NULL, wxT("Improper number entered into the Minimum field"), wxT("Minimum Error"), wxOK | wxICON_ERROR);
 				dial->ShowModal();
-				occured = true;
+				alreadyhappened = true;
 			}
 			if (countoccured && !minoccured && !maxoccured && !rejectoccured)
 			{
 				wxMessageDialog* dial = new wxMessageDialog(NULL, wxT("Improper number entered into the Number of results field"), wxT("Count Error"), wxOK | wxICON_ERROR);
 				dial->ShowModal();
-				occured = true;
+				alreadyhappened = true;
 			}
 			if (rejectoccured && !minoccured && !countoccured && !maxoccured)
 			{
 				wxMessageDialog* dial = new wxMessageDialog(NULL, wxT("Improper number entered into the Digit to Reject field"), wxT("Rejected!"), wxOK | wxICON_ERROR);
 				dial->ShowModal();
-				occured = true;
+				alreadyhappened = true;
 			}
-			if (occured && !rejectoccured && !minoccured && !countoccured && !maxoccured)
+			if ((occured && !rejectoccured && !minoccured && !countoccured && !maxoccured) || ((occured || rejectoccured || minoccured || countoccured || maxoccured) && !alreadyhappened))
 			{
 				wxMessageDialog* dial = new wxMessageDialog(NULL, wxT("A generic error has occured"), wxT("Error"), wxOK | wxICON_ERROR);
 				dial->ShowModal();
