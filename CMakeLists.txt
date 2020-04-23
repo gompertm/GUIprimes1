@@ -1,14 +1,12 @@
 cmake_minimum_required(VERSION 3.1)
-project(GUIprimes)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(CMAKE_VERBOSE_MAKEFILE ON)
-set(wxWidgets_USE_DEBUG ON)
-set(wxWidgets_USE_UNICODE ON)
-
-include(${'wx-config --libs all'})
-add_executable(GUIprimes
+project(GUIprimes
+        DESCRIPTION "Find prime numbers "
+        LANGUAGES  CXX)
+# set(wxWidgets_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/wx-config)
+find_package(wxWidgets REQUIRED base core)
+message ("now it located WXwidgets")
+include(${wxWidgets_USE_FILE})
+add_executable(GUIprimes.exe
         cApp.cpp
         cApp.h
         cMain.cpp
@@ -17,4 +15,3 @@ add_executable(GUIprimes
         messages.h
         utility.cpp
         utility.h)		
-
