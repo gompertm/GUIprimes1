@@ -1,7 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-
+#include<cmath>
 #include "utility.h"
 
 bool IsPrime(int x)

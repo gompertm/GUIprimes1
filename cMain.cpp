@@ -27,7 +27,7 @@ BEGIN_EVENT_TABLE(cMain, wxFrame)
 EVT_MENU(Minimal_Quit, cMain::OnQuit)
 EVT_MENU(Minimal_About, cMain::OnAbout)
 EVT_MENU(Minimal_Restart, cMain::OnRestart)
-EVT_BUTTON(42, OnButtonClicked)
+EVT_BUTTON(42, cMain::OnButtonClicked)
 EVT_BUTTON(54, cMain::OnReset)
 END_EVENT_TABLE()
 IMPLEMENT_APP(cApp)
@@ -157,7 +157,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 		{
 			srand(time(NULL));
 			// seed x with a random number;
-			x = (double)rand() / (RAND_MAX + 1) * (max - min) + min;
+			x = (double)rand() / (RAND_MAX) * (max - min) + min;
 			string1 = std::to_string(x);
 			m_seed->AppendString(string1);
 			for (int y = 0; y < count; x++)
@@ -230,7 +230,8 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 cMain::cMain() :wxFrame(nullptr, wxID_ANY, "GUIPRIMES", wxPoint(40, 40), wxSize(450, 600))
 {
 	// set the frame icon
-	SetIcon(wxICON(sample));
+        wxIcon titlebaricon = wxIcon("icon.png");
+	SetIcon(titlebaricon);
 
 #if wxUSE_MENUS
 	// create a menu bar
